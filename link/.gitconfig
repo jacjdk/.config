@@ -1,0 +1,10 @@
+[user]
+        name = jac
+        email = jac@proton.me
+[core]
+        editor = nvim
+        excludesFile = /home/jac/.gitignore
+[credential]
+        helper = store
+[init]
+        defaultBranch = main
