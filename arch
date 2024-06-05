@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+sudo -v
+
+
+repo=core
+arch=x86_64
+count=$(grep -o "Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/${repo}/os/${arch}" /etc/pacman.d/mirrorlist | wc -l)
+
+if [ "$count" -eq 0 ]; then
+    sudo sed -i '1i\Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
+fi
 
 if ! pacman -Q git base-devel go zsh &> /dev/null; then
     echo "start to install git base-devel go..."
@@ -11,10 +21,10 @@ echo "start to config yay"
 export GOPROXY=https://goproxy.io,direct
 export GOPRIVATE=git.mycompany.com,github.com/my/private
 
-if [[ ! -d "~/yay" ]]; then
+if [[ ! -d "$HOME/yay" ]]; then
     git clone https://aur.archlinux.org/yay.git ~/yay
 fi
-cd ~/yay
+cd "$HOME/yay" && 
 makepkg -si
 
 if [ $? -ne 0 ]; then
@@ -45,10 +55,10 @@ fi
 sudo pacman -Syu
 
 config_dir="$HOME/.config"
-fonts_dir="$config_dir/fonts"
-link_dir="$config_dir/link"
+# fonts_dir="$config_dir/fonts"
+# link_dir="$config_dir/link"
 
-chsh -s $(which zsh)
+chsh -s "$(which zsh)"
 
 if [ ! -f "$HOME/.bashrc" ]; then
   rm -rf "$HOME/.bashrc"
