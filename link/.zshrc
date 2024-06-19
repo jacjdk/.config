@@ -1,6 +1,8 @@
 # alias
 alias vi="nvim"
 alias reload="source ~/.zshrc"
+alias ls="lsd"
+alias cat="bat"
 
 # # for osx
 # if [ -d "/opt/homebrew/bin" ]; then
@@ -20,9 +22,9 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 
-zinit ice depth=1 atload"!source ~/.theme.zsh" lucid nocd
+#zinit ice depth=1 atload"!source ~/.theme.zsh" lucid nocd
 
-zinit light romkatv/powerlevel10k
+#zinit light romkatv/powerlevel10k
 
 # #=== OH-MY-ZSH & PREZTO PLUGINS =======================
 zinit for \
@@ -49,9 +51,9 @@ zinit light hlissner/zsh-autopair
 
 # set proxy
 function proxy() {
-  export http_proxy=http://127.0.0.1:1087
-  export https_proxy=http://127.0.0.1:1087
-  export ALL_PROXY=socks5://127.0.0.1:1080
+  export http_proxy=http://192.168.1.50:1080
+  export https_proxy=http://192.168.1.50:1080
+  export ALL_PROXY=socks5://192.168.1.50:1080
   # echo -e "\e[32mProxy has been successfully set.\e[0m"
 }
 
@@ -88,6 +90,7 @@ fsearch() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(starship init zsh)"
 
 if [ "$TMUX" = "" ]; then tn work; fi
 # proxy

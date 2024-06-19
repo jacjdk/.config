@@ -47,11 +47,3 @@ export EDITOR="nvim"
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_DEFAULT_OPTS='--height 90% --layout reverse --border --color "border:#b877db" --preview="bat --color=always {}"'
-
-
-export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
-export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
-
-
-export GOPROXY=https://goproxy.io,direct
-export GOPRIVATE=git.mycompany.com,github.com/my/private
