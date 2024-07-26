@@ -51,9 +51,9 @@ zinit light hlissner/zsh-autopair
 
 # set proxy
 function proxy() {
-  export http_proxy=http://192.168.1.50:1080
-  export https_proxy=http://192.168.1.50:1080
-  export ALL_PROXY=socks5://192.168.1.50:1080
+  export http_proxy=http://192.168.1.246:1080
+  export https_proxy=http://192.168.1.246:1080
+  export ALL_PROXY=socks5://192.168.1.246:1080
   # echo -e "\e[32mProxy has been successfully set.\e[0m"
 }
 
