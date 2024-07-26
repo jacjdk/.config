@@ -78,7 +78,12 @@ done
 shopt -u dotglob
 echo "link done"
 
-
+git config --global user.name "jacjdk"
+git config --global user.email "inpaz@proton.me"
+git config --global core.editor "nvim"
+git config --global credential.helper store
+git config --global core.excludesFile $HOME/.gitignore
+git config --global init.defaultBranch 'main'
 
 yay -Syu
 yay -S - < "$config_dir"/pkglist.txt --noconfirm --needed
