@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+
+sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+sudo sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+sudo sed -i 's/http:/https:/g' /etc/apt/sources.list
+
+sudo apt update 
+sudo apt dist-upgrade -y 
+sudo apt install zsh go -y
+
+
+config_dir="$HOME/.config"
+# fonts_dir="$config_dir/fonts"
+link_dir="$config_dir/link"
+
+chsh -s "$(which zsh)"
+
+if [ ! -f "$HOME/.bashrc" ]; then
+  rm -rf "$HOME/.bashrc"
+  rm -rf "$HOME/.bash_profile"
+  rm -rf "$HOME/.bash_history"
+fi
+
+echo "link config file"
+shopt -s dotglob
+for file in "$config_dir/link"/*; do
+  if [ -f "$file" ]; then
+    filename=$(basename "$file")
+    ln -s -f "$file" "$HOME/$filename"
+    echo "Created symlink: $HOME/$filename -> $file"
+  fi
+done
+shopt -u dotglob
+echo "link done"
+
+git config --global user.name "jacjdk"
+git config --global user.email "inpaz@proton.me"
+git config --global core.editor "nvim"
+git config --global credential.helper store
+git config --global core.excludesFile $HOME/.gitignore
+git config --global init.defaultBranch 'main'
